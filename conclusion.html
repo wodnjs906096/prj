@@ -5,58 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>평온 붕어빵</title>
     <style>
+        /* 폰트 설정 */
         @font-face {
-        font-family: 'iceHimchan-Rg';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceHimchan-Rg.woff2') format('woff2');
-        font-weight: normal;
-        font-style: normal;
+            font-family: 'iceHimchan-Rg';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceHimchan-Rg.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
 
+        /* 전체 body 스타일링 */
         body {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0; /* 휴대폰 화면 외부 배경색 */
+            height: 100vh; /* 화면 높이 설정 */
+            background-color: #f0f0f0; /* 배경색 설정 */
         }
+
+        /* 핸드폰 화면 스타일링 */
         .phone-screen {
             display: flex;
-            width: 600px; /* 휴대폰 화면 너비 */
-            height: 720px; /* 휴대폰 화면 높이 */
-            background-image: url('../pic/background.png'); /* 휴대폰 화면 배경 이미지 */
+            width: 600px; /* 핸드폰 화면 너비 */
+            height: 720px; /* 핸드폰 화면 높이 */
+            background-image: url('../pic/background.png'); /* 배경 이미지 설정 */
             background-size: 600px 720px;
             background-repeat: no-repeat; /* 이미지 반복 없음 */
-            background-position: center; /* 중앙 정렬 */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+            background-position: center; /* 이미지 중앙 정렬 */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
             overflow: hidden; /* 내용이 화면을 넘어갈 때 숨김 */
         }
+
+        /* 핸드폰 화면 내용 스타일링 */
         .phone-screen-content {
             width: 100%;
             height: 100%;
-            /* 배경 이미지가 적용되므로 여기에는 내용을 추가하지 않습니다 */
         }
+
+        /* 결괏값 이미지 스타일링 */
         .conclusion {
             display: flex;
-            justify-content: center; /* 가로 방향 가운데 정렬 */
-            align-items: center; /* 세로 방향 가운데 정렬 */
+            justify-content: center; /* 가로 가운데 정렬 */
+            align-items: center; /* 세로 가운데 정렬 */
         }
+
+        /* 공유 버튼 스타일링 */
         .share {
             position: relative;
             top: 435px;
-            left: 30px;
+            left: 25px;
+            cursor: pointer;
         }
+
+        /* 두 번째 공유 버튼 스타일링 */
         .share2 {
             position: relative;
             top: 360px;
             left: 60px;
+            cursor: pointer;
         }
+
+        /* 공유 버튼 호버 시 투명도 조정 */
+        .share,
+        .share2:hover {
+            opacity: 0.85;
+        }
+
+        /* 스탬프 스타일링 */
         .stamp {
             position: relative;
             top: 280px;
             left: 490px;
         }
+
+        /* 회사 정보 스타일링 */
         .company {
             position: relative;
             top: 210px;
@@ -66,10 +89,13 @@
             opacity: 60%;
             font-family: 'iceHimchan-Rg', sans-serif;
         }
+
+        /* 포스트잇 스타일링 */
         .post1 {
             position: relative;
             top: -310px;
-            left: 65px;        }
+            left: 65px;
+        }
         .post2 {
             position: relative;
             top: -560px;
@@ -85,41 +111,93 @@
             top: -870px;
             left: 285px;
         }
-    .post1,
-    .post2,
-    .post3,
-    .post4 {
-    transition: transform 0.3s ease; /* 변형에 대한 전환 효과를 추가하여 떼었다가 붙이는 효과를 부드럽게 만듭니다. */
-    }
-    .post1:hover,
-    .post2:hover,
-    .post3:hover,
-    .post4:hover {
-    transform: scale(1.1); /* 호버시 이미지 크기를 늘려 붙인 효과를 시뮬레이션합니다. */
-    }
+
+        /* 포스트잇 호버 시 스케일 조정 */
+        .post1,
+        .post2,
+        .post3,
+        .post4 {
+            transition: transform 0.3s ease;
+        }
+        .post1:hover,
+        .post2:hover,
+        .post3:hover,
+        .post4:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+    <!-- 핸드폰 화면 -->
     <div class="phone-screen">
+        <!-- 핸드폰 화면 내용 -->
         <div class="phone-screen-content">
-        <div class="conclusion">
-            <img src="../pic/평온.png" width="260px" height="210px"></div>
-        <div class="share">
-            <img src="../pic/share.png" width="65px" height="65px"></div>
-        <div class="share2">
-            <img src="../pic/share2.png" width="80px" height="75px"></div>
-        <div class="stamp">
-            <img src="../pic/stamp.png" width="110px" height="90px"></div>
-        <div class="company">
-            <p>Bungeo-ppang Universe Company</p></div>
-        <div class="post1">
-            <img src="../pic/post1.png" width="260px" height="260px"></div>
-        <div class="post2">
-            <img src="../pic/post2.png" width="260px" height="260px"></div>
-        <div class="post3">
-            <img src="../pic/post3.png" width="260px" height="260px"></div>
-        <div class="post4">
-            <img src="../pic/post4.png" width="260px" height="260px"></div>
+            <!-- 결괏값 이미지 -->
+            <div class="conclusion">
+                <img src="../pic/평온.png" width="260px" height="210px">
+            </div>
+
+            <!-- 공유 버튼 1 -->
+            <div class="share" onclick="sendKakaoTalkMessage()">
+                <img src="../pic/share.png" width="65px" height="65px">
+            </div>
+
+            <!-- 공유 버튼 2 -->
+            <div class="share2" onclick="sendKakaoTalkMessage()">
+                <img src="../pic/share2.png" width="80px" height="75px">
+            </div>
+
+            <!-- 스탬프 -->
+            <div class="stamp">
+                <img src="../pic/stamp.png" width="110px" height="90px">
+            </div>
+
+            <!-- 회사 정보 -->
+            <div class="company">
+                <p>Bungeo-ppang Universe Company</p>
+            </div>
+
+            <!-- 포스트잇 1 -->
+            <div class="post1">
+                <img src="../pic/post1.png" width="260px" height="260px">
+            </div>
+
+            <!-- 포스트잇 2 -->
+            <div class="post2">
+                <img src="../pic/post2.png" width="260px" height="260px">
+            </div>
+
+            <!-- 포스트잇 3 -->
+            <div class="post3">
+                <img src="../pic/post3.png" width="260px" height="260px">
+            </div>
+
+            <!-- 포스트잇 4 -->
+            <div class="post4">
+                <img src="../pic/post4.png" width="260px" height="260px">
+            </div>
+        </div>
     </div>
+
+    <!-- 카카오 SDK 스크립트 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        // 클릭 시 카카오톡 메시지 보내는 함수
+        function sendKakaoTalkMessage() {
+            // 카카오톡 메시지 전송 API 호출
+            // 카카오톡 API를 호출하는 코드를 여기에 추가하세요.
+            // 예시: Kakao.API.request({
+            //     url: '/v1/api/request',
+            //     data: { key: 'value' },
+            //     success: function(response) {
+            //         console.log(response);
+            //     },
+            //     fail: function(error) {
+            //         console.error(error);
+            //     }
+            // });
+        }
+    </script>
 </body>
 </html>
+
