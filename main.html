@@ -6,144 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>붕어빵 심리테스트</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-      /* 휴대폰 화면 외부 배경색 */
-    }
-
-    .main-page {
-      display: flex;
-      width: 600px;
-      /* 휴대폰 화면 너비 */
-      height: 720px;
-      /* 휴대폰 화면 높이 */
-      background-image: url("C:\\Contest\\picture\\main-background.png");
-      /* 휴대폰 화면 배경 이미지 */
-      background-size: 600px 720px;
-      background-repeat: no-repeat;
-      /* 이미지 반복 없음 */
-      background-position: center;
-      /* 중앙 정렬 */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      /* 그림자 추가 */
-      overflow: hidden;
-      /* 내용이 화면을 넘어갈 때 숨김 */
-    }
-
-    .page-logo-text {
-      position: relative;
-    }
-
-    .main-word1 {
-      position: absolute;
-      top: 30px;
-      left: 122px;
-      z-index: 1;
-    }
-
-    .main-word2 {
-      position: absolute;
-      top: 28px;
-      left: 204px;
-      z-index: 2;
-    }
-
-    .main-word3 {
-      position: absolute;
-      top: 24px;
-      left: 314px;
-      z-index: 3;
-    }
-
-    .main-word4 {
-      position: absolute;
-      top: 160px;
-      left: 13px;
-      z-index: 4;
-    }
-
-    .main-word5 {
-      position: absolute;
-      top: 173px;
-      left: 130px;
-      z-index: 5;
-    }
-
-    .main-word6 {
-      position: absolute;
-      top: 180px;
-      left: 250px;
-      z-index: 6;
-    }
-
-    .main-word7 {
-      position: absolute;
-      top: 175px;
-      left: 347px;
-      z-index: 7;
-    }
-
-    .main-word8 {
-      position: absolute;
-      top: 175px;
-      left: 430px;
-      z-index: 8;
-    }
-
-    .main-text {
-      position: relative;
-      top: 290px;
-      left: 84px;
-    }
-
-    .main-button {
-      position: relative;
-      top: 300px;
-      left: 210px;
-    }
+    
   </style>
+  <link rel = "stylesheet" href = "./css/background.css">
+  <link rel = "stylesheet" href = "./css/main.css">
+  <link rel = "stylesheet" href = "./css/animation.css">
+  <link rel = "stylesheet" href = "./css/qna.css">
 </head>
 
 <body>
+  <div class="container">
   <div class="main-page">
     <div class="page-logo-text">
+      <section id="main">
       <div class="main-word1">
-        <img src="../Contest/picture/붕.png" width="165px" height="165px">
+        <img src="./picture/붕.png" width="165px" height="165px">
       </div>
       <div class="main-word2">
-        <img src="../Contest/picture/어.png" width="165px" height="165px">
+        <img src="./picture/어.png" width="165px" height="165px">
       </div>
       <div class="main-word3">
-        <img src="../Contest/picture/빵.png" width="175px" height="175px">
+        <img src="./picture/빵.png" width="175px" height="175px">
       </div>
       <div class="main-word4">
-        <img src="../Contest/picture/심.png" width="165px" height="165px">
+        <img src="./picture/심.png" width="165px" height="165px">
       </div>
       <div class="main-word5">
-        <img src="../Contest/picture/리.png" width="152px" height="152px">
+        <img src="./picture/리.png" width="152px" height="152px">
       </div>
       <div class="main-word6">
-        <img src="../Contest/picture/테.png" width="152px" height="152px">
+        <img src="./picture/테.png" width="152px" height="152px">
       </div>
       <div class="main-word7">
-        <img src="../Contest/picture/스.png" width="152px" height="152px">
+        <img src="./picture/스.png" width="152px" height="152px">
       </div>
       <div class="main-word8">
-        <img src="../Contest/picture/트.png" width="152px" height="152px">
+        <img src="./picture/트.png" width="152px" height="152px">
       </div>
       <div class="main-text">
-        <img src="../Contest/picture/메인 틀.png" width="444px" height="208.5px">
+        <img src="./picture/메인 틀.png" width="444px" height="208.5px">
       </div>
       <div class="main-button">
-        <img src="../Contest/picture/start button.png" width="180px" height="180px">
+        <!-- 버튼 클릭시 starg.js에 있는 begin()실행-->
+        <button type="button" class ="start-btn" onclick="js:begin()"> 
+          <img src="./picture/start button.png" width="180px" height="180px">
+        </button>
       </div>
+    </section>
+    <section id = "qna">
+      <div class="qBox">
+      </div>
+      <div class="text-background">
+        <img src="./picture/text-background.png" width="760px" height="530px">
+      </div>
+      <div class = "answer">
+        <div class = "Yes">
+          <img src="./picture/Yes_adzuki beans.png" width="60px" hegith="40px">         
+        </div>
+        <div class = "No">
+          <img src="./picture/No_adzuki beans.png" width="60px" hegith="40px">
+        </div>
+      <div class="answerBox">
+        </div>
+        
+      </div>
+    </section>
     </div>
+  </div>
+  <script src="./js/data.js" cahrset="utf-8"></script>
+  <script src="./js/start.js" cahrset="utf-8"></script>
   </div>
 </body>
 
