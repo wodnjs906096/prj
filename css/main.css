@@ -76,3 +76,7 @@
     background-color: rgba(0, 0, 0, 0);
     transition: transform 0.3s ease;
   }
+
+  .start-btn:hover {
+    transform: scale(1.1);
+  }

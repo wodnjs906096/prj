@@ -26,7 +26,7 @@
 /*답변 설정 1(큰틀)*/
 .answerBox{
     display: block;
-    margin-top: 25px;
+    margin-top: 20px;
 }
 /*답변 설정 2(작은틀)*/
 .answerList{
@@ -41,7 +41,7 @@
 }
 /*답변 hover 시 크기 증가*/
 .answerList:hover{
-    font-size: 20px;
+    color: red;
 }
 
 /*답변 옆에 팥 설정*/

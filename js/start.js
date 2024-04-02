@@ -41,6 +41,7 @@ function goNext(){
   }
 }
 
+
 function begin(){
   main.style.webkitAnimation = "fadeOut 1s";  //main 요소에 페이드 아웃 애니메이션 적용
   main.style.animation = "fadeOut 1s";
