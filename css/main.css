@@ -80,3 +80,7 @@
   .start-btn:hover {
     transform: scale(1.1);
   }
+
+  .main-word img {
+    transition: transform 1s ease-in-out;
+}

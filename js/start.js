@@ -65,4 +65,24 @@ function begin(){
     }, 450)
     
   }, 450)
+} 
+
+const images = document.querySelectorAll('.main-word img');
+
+// 이미지 확대 함수
+function scaleImages() {
+  images.forEach((image, index) => {
+    setTimeout(() => {
+      image.style.transform = 'scale(1.3)'; // 이미지 확대
+    }, index * 1000);
+
+    setTimeout(() => {
+      image.style.transform = 'scale(1)'; // 원래 크기로 복원
+    }, (index + 1) * 1000);// 1초 간격으로 이미지 확대
+  });
 }
+
+// 페이지 로드 시 이미지 확대 시작
+window.onload = function () {
+  scaleImages();
+};
