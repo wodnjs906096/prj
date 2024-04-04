@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 스케일링</title>
+    <style>
+        /* 이미지를 가운데 정렬합니다. */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 이미지를 초기 크기로 설정합니다. */
+        .main-word img {
+            width: 165px;
+            height: 165px;
+            transition: transform 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- 이미지 리스트 -->
+        <div class="main-word">
+            <img src="./picture/붕.png" width="165px" height="165px">
+            <img src="./picture/어.png" width="165px" height="165px">
+            <img src="./picture/빵.png" width="175px" height="175px">
+            <img src="./picture/심.png" width="165px" height="165px">
+            <img src="./picture/리.png" width="152px" height="152px">
+            <img src="./picture/테.png" width="152px" height="152px">
+            <img src="./picture/스.png" width="152px" height="152px">
+            <img src="./picture/트.png" width="152px" height="152px">
+        </div>
+        <div class="main-text">
+            <img src="./picture/메인 틀.png" width="444px" height="208.5px">
+        </div>
+    </div>
+
+    <script>
+        // 이미지 리스트
+        const images = document.querySelectorAll('.main-word img');
+
+        // 이미지 확대 함수
+        function scaleImages() {
+            images.forEach((image, index) => {
+                setTimeout(() => {
+                    image.style.transform = 'scale(1.5)'; // 이미지 확대
+                }, index * 1000);
+
+                setTimeout(() => {
+                    image.style.transform = 'scale(1)'; // 원래 크기로 복원
+                }, (index + 1) * 1000);// 1초 간격으로 이미지 확대
+            });
+        }
+
+        // 페이지 로드 시 이미지 확대 시작
+        window.onload = function () {
+            scaleImages();
+        };
+    </script>
+</body>
+
+</html>
