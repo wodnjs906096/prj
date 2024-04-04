@@ -45,9 +45,9 @@ function goNext(){
   }
   var randomIdx = getRandomQuestionIndex(); // 중복되지 않는 랜덤한 질문 인덱스 가져오기
   var q = document.querySelector('.qBox'); //HTML 문서에서 클래스가 'qBox'인 요소 찾음
-  q.innerHTML = qnaList[randomIdx][randomIdx2].q; //질문의 텍스트 설정
-  for(let i in qnaList[randomIdx][randomIdx2].a){
-    addAnswer(qnaList[randomIdx][randomIdx2].a[i].answer, randomIdx); //해당 질문의 답변을 표시하기 위해 'addAnswer()' 함수 호출
+  q.innerHTML = qnaList[randomIdx][0].q; //질문의 텍스트 설정
+  for(let i in qnaList[randomIdx][0].a){
+    addAnswer(qnaList[randomIdx][0].a[i].answer); //해당 질문의 답변을 표시하기 위해 'addAnswer()' 함수 호출
   }
 }
 
