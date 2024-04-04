@@ -19,7 +19,7 @@
     display: flex;
     width: 600px; /* 핸드폰 화면 너비 */
     height: 720px; /* 핸드폰 화면 높이 */
-    background-image: url("../picture/background.png"); /* 배경 이미지 설정 */
+    background-image: url("../pic/background.png"); /* 배경 이미지 설정 */
     background-size: 600px 720px;
     background-repeat: no-repeat; /* 이미지 반복 없음 */
     background-position: center; /* 이미지 중앙 정렬 */

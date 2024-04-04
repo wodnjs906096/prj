@@ -29,15 +29,25 @@ function getRandomQuestionIndex() {
   return randomIdx; //함수를 호출한 곳으로 랜덤한 질문 인덱스 전달
 }
 
+function getRandomQuestionIndex2() {
+  let randomIdx2; //randomIdx 변수 선언
+  do {
+    randomIdx2 = Math.floor(Math.random() * qnaList[0].length);//0부터 배열의 길이까 랜덤한 부동소수점 생성 후 소수점 버림하여 정수 변환
+  } while (selectedQuestions.includes(randomIdx2)); // 이미 선택된 질문이면 다시 선택
+  selectedQuestions.push(randomIdx2); // 선택된 질문을 추적으로 인해 마지막 질문 선택 불가
+  return randomIdx2; //함수를 호출한 곳으로 랜덤한 질문 인덱스 전달
+}
+
+
 function goNext(){
   if(selectedQuestions.length === qnaList.length){  //마지막 질문 선택 가능
     return;
   }
   var randomIdx = getRandomQuestionIndex(); // 중복되지 않는 랜덤한 질문 인덱스 가져오기
   var q = document.querySelector('.qBox'); //HTML 문서에서 클래스가 'qBox'인 요소 찾음
-  q.innerHTML = qnaList[randomIdx].q; //질문의 텍스트 설정
-  for(let i in qnaList[randomIdx].a){
-    addAnswer(qnaList[randomIdx].a[i].answer, randomIdx); //해당 질문의 답변을 표시하기 위해 'addAnswer()' 함수 호출
+  q.innerHTML = qnaList[randomIdx][randomIdx2].q; //질문의 텍스트 설정
+  for(let i in qnaList[randomIdx][randomIdx2].a){
+    addAnswer(qnaList[randomIdx][randomIdx2].a[i].answer, randomIdx); //해당 질문의 답변을 표시하기 위해 'addAnswer()' 함수 호출
   }
 }
 
@@ -51,7 +61,8 @@ function begin(){
     setTimeout(() =>{
       main.style.display = "none"; //일정시간이 지난 후 main 화면 없애고 qna 화면 표시
       qna.style.display = "block"
+      goNext(); // goNext 함수 호출
     }, 450)
-    goNext(); // goNext 함수 호출
+    
   }, 450)
 }
