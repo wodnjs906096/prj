@@ -5,7 +5,7 @@
 
 /*질문 설정*/
 .qBox{
-    position: fixed;
+    position: absolute;
     padding: 0px 0px;
     transform: translate(70px, 220px);
     z-index: 2;
