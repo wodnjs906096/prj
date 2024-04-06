@@ -2,6 +2,8 @@ const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 let selectedQuestions = [];
 const images = document.querySelectorAll('.main-word img');
+let random = 0;
+let count = 0;
 let i = 0; // i 변수를 함수 외부에 선언하고 초기화
 let k = 1;
 let s = 2;
@@ -27,45 +29,81 @@ function addAnswer(answerText){
 function getRandomQuestionIndex() {
   let randomIdx;
   do {
-    randomIdx = Math.floor(Math.random() * qnaList.length);
+    randomIdx = Math.floor(Math.random() * feeling.length);
   } while (selectedQuestions.includes(randomIdx));
   selectedQuestions.push(randomIdx);
-  return randomIdx;
+  return randomIdx * 3;
 }
 
 function goNext1(){
-  if(selectedQuestions.length === qnaList.length){
+  if(selectedQuestions.length === feeling.length){
     return;
   }
   var randomIdx = getRandomQuestionIndex();
+  console.log(randomIdx);
   var q = document.querySelector('.qBox');
-
-  if( i % 3 == 0){
-    q.innerHTML = qnaList[i].q;
-    for(let j in qnaList[i].a){
-      addAnswer(qnaList[i].a[j].answer);
+  if(i > 18){
+    count ++;
+    random = randomIdx + 1;
+    goNext2();
+  }
+  if(i <= 18 &&i % 3 == 0 && randomIdx % 3 == 0){
+    q.innerHTML = qnaList[randomIdx].q;
+    for(let j in qnaList[randomIdx].a){
+      addAnswer(qnaList[randomIdx].a[j].answer);
     }
-    if(i >= 15){
+    console.log(selectedQuestions);
+    console.log(qnaList[randomIdx]);
+    i+=3;
+    console.log(i);
+    if(i >=18 ){
       i++;
+      selectedQuestions = [];
     }
-  }else if(k % 3 == 1){
-    q.innerHTML = qnaList[k].q;
-    for(let j in qnaList[k].a){
-      addAnswer(qnaList[k].a[j].answer);
+  }
+  
+}
+
+function goNext2(){
+  if(selectedQuestions.length === qnaList.length){
+    return;
+  }
+  var q = document.querySelector('.qBox');
+  if (k > 19){
+    random = random + 1;
+    goNext3();
+  }
+  if(k <= 19 &&k % 3 == 1 && random % 3 == 1){
+    q.innerHTML = qnaList[random].q; 
+    for(let j in qnaList[random].a){
+      addAnswer(qnaList[random].a[j].answer);
     }
     k += 3;
-    if (k > 16){
+    console.log(selectedQuestions);
+    console.log(qnaList[random]);
+    if(k >= 19){
       k++;
+      selectedQuestions = [];
     }
-  }else if(s % 3 == 2){
-    q.innerHTML = qnaList[s].q;
-    for(let j in qnaList[s].a){
-      addAnswer(qnaList[s].a[j].answer);
-    }
-    s +=3 ;
   }
-  i += 3;
 }
+
+function goNext3(){
+  if(selectedQuestions.length === qnaList.length){
+    return;
+  }
+  var q = document.querySelector('.qBox');
+
+  if(s % 3 == 2 && random % 3 == 2){
+    q.innerHTML = qnaList[random].q;
+    for(let j in qnaList[random].a){
+      addAnswer(qnaList[random].a[j].answer);
+    }
+    console.log(selectedQuestions);
+    s +=3;
+  }
+}
+
 
 function begin(){
   main.style.webkitAnimation = "fadeOut 1s";
