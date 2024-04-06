@@ -133,5 +133,5 @@ const qnaList = [
         }
 ]
 
-const feeling = [Peace, Toughness, Anger, Love, Happy, Sad]
+const feeling = ['Peace', 'Toughness', 'Anger', 'Love', 'Happy', 'Sad']
 
