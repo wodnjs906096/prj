@@ -1,12 +1,13 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
-let selectedQuestions = [];
 const images = document.querySelectorAll('.main-word img');
-let random = 0;
-let count = 0;
+let selectedQuestions = []; // selectedQuestions 배열을 외부에 선언하고 초기화
+
+let random = 0; // count 변수를 함수 외부에 선언하고 초기화
+let count = 0; // count 변수를 함수 외부에 선언하고 초기화
 let i = 0; // i 변수를 함수 외부에 선언하고 초기화
-let k = 1;
-let s = 2;
+let k = 1; // k 변수를 함수 외부에 선언하고 초기화
+let s = 2; // s 변수를 함수 외부에 선언하고 초기화
 
 function addAnswer(answerText){
   var a = document.querySelector('.answerBox');
@@ -14,7 +15,7 @@ function addAnswer(answerText){
   answer.classList.add('answerList');
   a.appendChild(answer);
   
-  answer.innerHTML = answerText;    
+  answer.innerHTML = answerText;  // answerText를 HTML 문서에 삽입 
 
   answer.addEventListener("click", function(){
     var children = document.querySelectorAll('.answerList');
@@ -27,32 +28,32 @@ function addAnswer(answerText){
 }
 
 function getRandomQuestionIndex() {
-  let randomIdx;
+  let randomIdx; // randomIdx 변수 선언
   do {
-    randomIdx = Math.floor(Math.random() * feeling.length);
-  } while (selectedQuestions.includes(randomIdx));
-  selectedQuestions.push(randomIdx);
-  return randomIdx * 3;
+    randomIdx = Math.floor(Math.random() * feeling.length); // feeling 배열의 길이만큼 랜덤 값 생성
+  } while (selectedQuestions.includes(randomIdx)); // 랜덤값 중복확인
+  selectedQuestions.push(randomIdx); //랜덤 값 배열에 추가
+  return randomIdx * 3; // 랜덤 숫자 * 3
 }
 
 function goNext1(){
-  if(selectedQuestions.length === feeling.length){
+  if(selectedQuestions.length === feeling.length){ // 배열의 길이가 같을 시 답변 선택 가능
     return;
   }
-  var randomIdx = getRandomQuestionIndex();
-  console.log(randomIdx);
-  var q = document.querySelector('.qBox');
+  var randomIdx = getRandomQuestionIndex(); //randomIdx 변수에 getRandomQuestionIndex 함수 호출
+  console.log(randomIdx); // radomIdx 콘솔창에서 값 확인
+  var q = document.querySelector('.qBox'); // 
   if(i > 18){
-    count ++;
-    random = randomIdx + 1;
-    goNext2();
+    count ++; // count 값 1 증가
+    random = randomIdx + 1; // random 변수에 randomIdx 값 + 1
+    goNext2(); // goNext2 함수 호출
   }
-  if(i <= 18 &&i % 3 == 0 && randomIdx % 3 == 0){
-    q.innerHTML = qnaList[randomIdx].q;
-    for(let j in qnaList[randomIdx].a){
+  if(i <= 18 && i % 3 == 0 && randomIdx % 3 == 0){
+    q.innerHTML = qnaList[randomIdx].q; // qnaList 배열에서 [randmIdx]번째 질문을 HTML문서에 삽입
+    for(let j in qnaList[randomIdx].a){ //
       addAnswer(qnaList[randomIdx].a[j].answer);
     }
-    console.log(selectedQuestions);
+    console.log(selectedQuestions); //console에 
     console.log(qnaList[randomIdx]);
     i+=3;
     console.log(i);
@@ -61,19 +62,24 @@ function goNext1(){
       selectedQuestions = [];
     }
   }
-  
 }
 
 function goNext2(){
   if(selectedQuestions.length === qnaList.length){
     return;
   }
+
+
+  // 선택된 질문을 화면에 표시
   var q = document.querySelector('.qBox');
+
+
+
   if (k > 19){
     random = random + 1;
     goNext3();
   }
-  if(k <= 19 &&k % 3 == 1 && random % 3 == 1){
+  if(k <= 19 && k % 3 == 1 && random % 3 == 1){
     q.innerHTML = qnaList[random].q; 
     for(let j in qnaList[random].a){
       addAnswer(qnaList[random].a[j].answer);
@@ -135,3 +141,5 @@ function scaleImages() {
 window.onload = function () {
   scaleImages();
 };
+
+
