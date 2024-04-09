@@ -2,24 +2,21 @@ const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const images = document.querySelectorAll('.main-word img');
 let selectedQuestions = []; // selectedQuestions 배열을 외부에 선언하고 초기화
+let selectedQuestions2 = [];
 let selectedTypes = [];
+let Intersection = [];
 let random = 0; // count 변수를 함수 외부에 선언하고 초기화
 let count = 0; // count 변수를 함수 외부에 선언하고 초기화
 let i = 0; // i 변수를 함수 외부에 선언하고 초기화
 let k = 1; // k 변수를 함수 외부에 선언하고 초기화
 let s = 2; // s 변수를 함수 외부에 선언하고 초기화
-var t;
 
-function addAnswer(answerText, answerType){
+function addAnswer(answerText, type){
   var a = document.querySelector('.answerBox'); //HTML 문서에서 클래스가 'answerBox'인 요소 찾음
   var answer = document.createElement('button'); // 새로운 버튼 요소 생성
   answer.classList.add('answerList'); // 새로 생성된 버튼에 'answerList'클래스 추가
   a.appendChild(answer); // 'answerBox'요소에 새로생성된 버튼을 자식 요소로 추가
-
-  // 타입 정보를 버튼 요소에 저장
-  answer.dataset.type = answerType;
-
-<<<<<<< HEAD
+  
   answer.innerHTML = answerText;  // answerText를 HTML 문서에 삽입 
 
   answer.addEventListener("click", function(){ //'answer'에 클릭 이벤트 추가
@@ -28,43 +25,26 @@ function addAnswer(answerText, answerType){
       children[i].disabled = true; // 현재 순회 중인 버튼 비활성화
       children[i].style.display = 'none'; // 현재 순회 중인 버튼 화면에서 숨김
     }
-    
+
     // 선택된 답변의 타입을 selectedTypes 배열에 추가
-    selectedTypes.push(answer.dataset.type);
+    selectedTypes.push(type);
+    
     
     goNext1(); //goNext함수 호출
-=======
-function addAnswer(answerText){
-  var a = document.querySelector('.answerBox'); // HTML 문서에서 클래스명이 'answerBox'인 요소를 가져옴
-  var answer = document.createElement('button'); // 새로운 버튼 요소를 생성함
-  answer.classList.add('answerList'); // 'answerList' 클래스를 버튼 요소에 추가함
-  a.appendChild(answer);
-  
-  answer.innerHTML = answerText;  // answerText를 HTML 문서에 삽입 
-
-  answer.addEventListener("click", function(){
-    var children = document.querySelectorAll('.answerList'); // 모든 버튼 요소를 가져옴
-    for(let i = 0; i < children.length; i ++){
-      children[i].disabled = true;
-      children[i].style.display = 'none';
-    }
-    goNext1(); // 다음 질문으로 이동하는 함수 호출
->>>>>>> 68853c0782ca7a0a6a58fb8777b498b8c7dab347
   }, false);
 }
 
 function getRandomQuestionIndex() {
   let randomIdx; // randomIdx 변수 선언
   do {
-    randomIdx = Math.floor(Math.random() * feeling.length); // feeling 배열의 길이만큼 랜덤 값 생성
-  } while (selectedQuestions.includes(feeling[randomIdx])); // 랜덤 값 중복확인
-  selectedQuestions.push(feeling[randomIdx]); // 랜덤 값 배열에 추가
+    randomIdx = Math.floor(Math.random() * feelingList.length); // feelingList 배열의 길이만큼 랜덤 값 생성
+  } while (selectedQuestions.includes(feelingList[randomIdx])); // 랜덤 값 중복확인
+  selectedQuestions.push(feelingList[randomIdx]); // 랜덤 값 배열에 추가
   return randomIdx * 3; // 랜덤 숫자 * 3
 }
 
-
 function goNext1(){
-  if(selectedQuestions.length === feeling.length){ // 배열의 길이가 같을 시 답변 선택 가능
+  if(selectedQuestions.length === feelingList.length){ // 배열의 길이가 같을 시 답변 선택 가능
     return;
   }
   
@@ -78,39 +58,41 @@ function goNext1(){
   }
   if(i <= 18 && i % 3 == 0 && randomIdx % 3 == 0){
     q.innerHTML = qnaList[randomIdx].q; // qnaList 배열에서 [randmIdx]번째 질문을 HTML문서에 삽입
-<<<<<<< HEAD
     for(let j in qnaList[randomIdx].a){
-      addAnswer(qnaList[randomIdx].a[j].answer);
+      addAnswer(qnaList[randomIdx].a[j].answer, qnaList[randomIdx].a[j].type);
     }
     console.log(selectedTypes);
     console.log(selectedQuestions); 
     console.log(qnaList[randomIdx]);
-=======
-    for(let j in qnaList[randomIdx].a){ // 선택된  [randmIdx]번째 질문의 각 답변에 대해 반복
-      addAnswer(qnaList[randomIdx].a[j].answer); //  [randmIdx]번째 질문의 각 답변을 버튼으로 HTML에 추가
-    }
-    console.log(selectedQuestions); //console에 선택된 질문 배열을 출력
-    console.log(qnaList[randomIdx]); //console에 선택된 질문을 출력
->>>>>>> 68853c0782ca7a0a6a58fb8777b498b8c7dab347
     i+=3;
     console.log(i);
     if(i >=18 ){
       i++;
+      Intersection.push(selectedQuestions.filter(x => selectedTypes(x)));
       selectedQuestions = []; // 질문 배열을 초기화
     }
   }
 }
 
+function getRandomQuestionIndex2() {
+  let random; // randomIdx 변수 선언
+  do {
+    random = Math.floor(Math.random() * Intersection.length); // feelingList 배열의 길이만큼 랜덤 값 생성
+  } while (selectedQuestions2.includes(Intersection[random])); // 랜덤 값 중복확인
+  selectedQuestions2.push(Intersection[random]); // 랜덤 값 배열에 추가
+  return random * 3 + 1; // 랜덤 숫자 * 3
+}
+
 function goNext2(){
-  if(selectedQuestions.length === qnaList.length){
+  if(selectedQuestions2.length === Intersection.length){
     return;
   }
   
   // 선택된 질문을 화면에 표시
   var q = document.querySelector('.qBox');
+  var random = getRandomQuestionIndex2();
 
   if (k > 19){
-    random = random + 1;
     goNext3();
   }
   if(k <= 19 && k % 3 == 1 && random % 3 == 1){
@@ -129,7 +111,7 @@ function goNext2(){
 }
 
 function goNext3(){
-  if(selectedQuestions.length === qnaList.length){
+  if(selectedQuestions.length === feelingList.length){
     return;
   }
   var q = document.querySelector('.qBox');
@@ -143,7 +125,6 @@ function goNext3(){
     s +=3;
   }
 }
-
 
 function begin(){
   // 메인 화면을 서서히 사라지게 하는 애니메이션 설정
@@ -177,5 +158,3 @@ function scaleImages() {
 window.onload = function () {
   scaleImages(); // scaleImages() 함수 호출
 };
-
-
