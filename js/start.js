@@ -2,14 +2,16 @@ const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const images = document.querySelectorAll('.main-word img');
 let selectedQuestions = []; // selectedQuestions 배열을 외부에 선언하고 초기화
-let selectedQuestions2 = [];
-let selectedQuestions3 = [];
-let selectedTypes = [];
-let Intersection = [];
-let Intersection2 = [];
+let selectedQuestions2 = []; // selectedQuestions2 배열을 외부에 선언하고 초기화
+let selectedQuestions3 = []; // selectedQuestions3 배열을 외부에 선언하고 초기화
+let selectedTypes = []; // selectedTypes 배열을 외부에 선언하고 초기화
+let Intersection = []; // Intersection 배열을 외부에 선언하고 초기화
+let Intersection2 = []; // Intersection2 배열을 외부에 선언하고 초기화
 let i = 0; // i 변수를 함수 외부에 선언하고 초기화
 let k = 0; // k 변수를 함수 외부에 선언하고 초기화
 let s = 0; // s 변수를 함수 외부에 선언하고 초기화
+
+// 각 감정에 대한 값을 가진 객체
 const feelingValues = {
   'Peace': 0,
   'Toughness': 1,
@@ -19,6 +21,7 @@ const feelingValues = {
   'Sad': 5
 };
 
+// Intersection 배열의 감정을 해당하는 값으로 변환하여 새로운 배열 생성
 const intersectionValues = Intersection.map(feeling => feelingValues[feeling]);
 
 function addAnswer(answerText, type){
@@ -38,7 +41,7 @@ function addAnswer(answerText, type){
 
     // 선택된 답변의 타입을 selectedTypes 배열에 추가
     selectedTypes.push(type);
-    console.log(selectedTypes);
+    console.log(selectedTypes); //console에 선택된 질문 타입을 출력
     goNext1(); //goNext함수 호출
   }, false);
 }
@@ -52,6 +55,7 @@ function getRandomQuestionIndex() {
   return randomIdx; // 랜덤 숫자 * 3
 }
 
+// goNext1() 함수로 넘어가는 함수
 function goNext1(){
   if(selectedQuestions.length === feelingList.length){ // 배열의 길이가 같을 시 답변 선택 가능
     return;
@@ -60,10 +64,10 @@ function goNext1(){
   var randomIdx = getRandomQuestionIndex(); //randomIdx 변수에 getRandomQuestionIndex 함수 호출
   var q = document.querySelector('.qBox'); // q 변수에 HTML 문서에서 클래스명이 'qBox'인 요소를 가져옴
   if(i === 19){
-    Intersection.push(...feelingList.filter(x => selectedTypes.includes(x)));
+    Intersection.push(...feelingList.filter(x => selectedTypes.includes(x))); // feelingList와 selectedTypes의 교집합 계산
     i++;
     if(i === 20){
-      selectedTypes = [];
+      selectedTypes = []; // selectedTypes 배열 초기화
       i++;
       goNext2(); // goNext2 함수 호출
     }
@@ -74,10 +78,10 @@ function goNext1(){
   if(i <= 18 && i % 3 == 0){
     q.innerHTML = qnaList[randomIdx][0].q; // qnaList 배열에서 [randmIdx]번째 질문을 HTML문서에 삽입
     for(let j in qnaList[randomIdx][0].a){
-      addAnswer(qnaList[randomIdx][0].a[j].answer, qnaList[randomIdx][0].a[j].type);
+      addAnswer(qnaList[randomIdx][0].a[j].answer, qnaList[randomIdx][0].a[j].type); // 각 답변에 대해 버튼 생성
     }
     i+=3;
-    console.log(i);
+    console.log(i); //console에 변수 i값을 출력
     if(i >=18 ){
       i++;
       selectedQuestions = []; // 질문 배열을 초기화
@@ -94,32 +98,33 @@ function getRandomQuestionIndex2() {
   return feelingValues[Intersection[randomIdx2]];
 }
 
+// goNext2() 함수로 넘어가는 함수
 function goNext2(){
-  if(selectedQuestions2.length === Intersection.length){
+  if(selectedQuestions2.length === Intersection.length){ // 배열의 길이가 같을 시 답변 선택 가능
     return;
   }
   
   // 선택된 질문을 화면에 표시
   var q = document.querySelector('.qBox');
-  var randomIdx2 = getRandomQuestionIndex2();
+  var randomIdx2 = getRandomQuestionIndex2(); // 랜덤 질문 인덱스 가져오기
 
     if(k > Intersection.length && s === 0){
-      Intersection2.push(...feelingList.filter(x => selectedTypes.includes(x)));
+      Intersection2.push(...feelingList.filter(x => selectedTypes.includes(x))); // feelingList와 selectedTypes의 교집합 계산
       console.log(Intersection2);
       s++;
       if(s===1){
         selectedTypes = [];
         s++;
-        goNext3(); // goNext2 함수 호출
+        goNext3(); // goNext3 함수 호출
       }
     }else if(k > Intersection.length && s === 2){
-      goNext3();
+      goNext3(); // goNext3 함수 호출
     }
 
   if( k <= Intersection.length){
-    q.innerHTML = qnaList[randomIdx2][1].q; 
+    q.innerHTML = qnaList[randomIdx2][1].q; // qnaList 배열에서 [randmIdx2]번째 질문을 HTML문서에 삽입
     for(let j in qnaList[randomIdx2][1].a){
-      addAnswer(qnaList[randomIdx2][1].a[j].answer, qnaList[randomIdx2][1].a[j].type);
+      addAnswer(qnaList[randomIdx2][1].a[j].answer, qnaList[randomIdx2][1].a[j].type); // 각 답변에 대해 버튼 생성
     }
     k++;
     if (k===Intersection.length){
@@ -139,19 +144,20 @@ function getRandomQuestionIndex3() {
   return feelingValues[Intersection2[randomIdx3]];
 }
 
+// goNext3() 함수로 넘어가는 함수
 function goNext3(){
-  if(selectedQuestions3.length === Intersection2.length){
+  if(selectedQuestions3.length === Intersection2.length){ // 배열의 길이가 같을 시 답변 선택 가능
     return;
   }
-  var q = document.querySelector('.qBox');
-  var randomIdx3 = getRandomQuestionIndex3();
+  var q = document.querySelector('.qBox'); // HTML에서 클래스가 'qBox'인 요소를 찾아 변수에 할당
+  var randomIdx3 = getRandomQuestionIndex3(); // 랜덤 질문 인덱스 가져오기
 
-    q.innerHTML = qnaList[randomIdx3][2].q;
+    q.innerHTML = qnaList[randomIdx3][2].q; // qnaList 배열에서 [randmIdx3]번째 질문을 HTML문서에 삽입
     for(let j in qnaList[randomIdx3][2].a){
-      addAnswer(qnaList[randomIdx3][2].a[j].answer, qnaList[randomIdx3][2].a[j].type);
+      addAnswer(qnaList[randomIdx3][2].a[j].answer, qnaList[randomIdx3][2].a[j].type); // 각 답변에 대해 버튼 생성
     }
-    console.log(selectedQuestions3);
-    console.log(Intersection2);
+    console.log(selectedQuestions3); //console에 selectedQuestions3을 출력
+    console.log(Intersection2); //console에 Intersection2을 출력
 }
 
 function begin(){
