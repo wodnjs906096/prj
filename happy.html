@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0, text/html" />
+  <title>행복 붕어빵</title>
+  
+  <script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <link rel="stylesheet" href="./css/result.css">
+  <script
+      type="text/JavaScript"
+      src="https://developers.kakao.com/sdk/js/kakao.min.js"
+    ></script>
+    <script>
+      Kakao.init("3a28e6d6b750f20875be0810883ca64e");
+      console.log(Kakao.isInitialized());
+    </script>
+</head>
+
+<body>
+  <!-- 핸드폰 화면 -->
+  <div class="phone-screen">
+    <!-- 핸드폰 화면 내용 -->
+    <div class="phone-screen-content">
+      <!-- 결괏값 이미지 -->
+      <div class="result">
+        <img src="./pic/happy.png" width="580px" height="720px" />
+      </div>
+
+      <!-- 공유 버튼 1 -->
+      <div class="share" onclick="clip()">
+        <img src="./pic/share.png" width="65px" height="65px" />
+      </div>
+
+      <!-- 공유 버튼 2 -->
+      <div class="share2" onclick="sendLinkDefault()">
+        <img src="./pic/share2.png" width="80px" height="75px" />
+      </div>
+    </div>
+  </div>
+  <script src="./js/share.js" charset="utf-8"></script>
+</body>
+</html>

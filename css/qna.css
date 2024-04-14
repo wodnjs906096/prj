@@ -1,0 +1,53 @@
+/*id가 qna인 display 설정 없음*/
+#qna{
+    display: none;
+}
+
+/*질문 설정*/
+.qBox{
+    position: absolute;
+    padding: 0px 0px;
+    transform: translate(70px, 220px);
+    z-index: 2;
+    font-size: 20px;
+    font-family: "iceHimchan-Rg";
+    color: white;
+    text-align: left;
+}
+
+/*질문 뒤에 나오는 배경 설정*/
+.text-background{
+    position: relative;
+    transform: translate(0px, -30px);
+    margin-left: -75px;
+    z-index: 1;
+}
+
+/*답변 설정 1(큰틀)*/
+.answerBox{
+    display: block;
+    margin-top: 20px;
+}
+/*답변 설정 2(작은틀)*/
+.answerList{
+    display: block;
+    margin: 35px;
+    transform: translate(40px, -170px);
+    font-size: 17px;
+    font-family: "iceHimchan-Rg";
+    background-color: rgba(0, 0, 0, 0);
+    border:none;
+    text-align: left;
+}
+/*답변 hover 시 크기 증가*/
+.answerList:hover{
+    color: red;
+}
+
+/*답변 옆에 팥 설정*/
+.answer{
+    display: flex;
+    flex-direction: column;
+    transform: translate(50px, 20px);
+}
+

@@ -1,0 +1,85 @@
+ /* 전체 body 스타일링 */
+ body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* 화면 높이 설정 */
+  background-color: #f0f0f0;
+  /* 배경색 설정 */
+}
+
+/* 핸드폰 화면 스타일링 */
+.phone-screen {
+  display: flex;
+  width: 580px;
+  /* 핸드폰 화면 너비 */
+  height: 720px;
+  /* 핸드폰 화면 높이 */
+  background-image: url("./pic/background.png");
+  /* 배경 이미지 설정 */
+  background-size: 600px 720px;
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center;
+  /* 이미지 중앙 정렬 */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  /* 그림자 설정 */
+  overflow: hidden;
+  /* 내용이 화면을 넘어갈 때 숨김 */
+}
+
+/* 핸드폰 화면 내용 스타일링 */
+.phone-screen-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.result {
+  text-align: center;
+}
+
+/* 공유 버튼 스타일링 */
+.share {
+  position: absolute;
+  top: 650px; /* 원하는 수치만큼 위쪽으로 이동 */
+  left: 25px; /* 원하는 수치만큼 왼쪽으로 이동 */
+  cursor: pointer;
+ z-index: 2;
+}
+
+/* 두 번째 공유 버튼 스타일링 */
+.share2 {
+  position: absolute;
+  top: 645px; /* 원하는 수치만큼 위쪽으로 이동 */
+  left: 65px; /* 원하는 수치만큼 왼쪽으로 이동 */
+  cursor: pointer;
+  z-index: 2;
+} 
+
+/* 공유 버튼 호버 시 투명도 조정 */
+.share,
+.share2:hover {
+  opacity: 0.85;
+}
+
+/* 스탬프 스타일링 */
+.stamp {
+  position: relative;
+  top: 280px;
+  left: 490px;
+}
+
+/* 회사 정보 스타일링 */
+.company {
+  position: relative;
+  top: 210px;
+  left: 370px;
+  font-size: 13px;
+  font-weight: bold;
+  opacity: 60%;
+  font-family: "iceHimchan-Rg", sans-serif;
+}
