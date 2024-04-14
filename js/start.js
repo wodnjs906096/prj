@@ -7,9 +7,11 @@ let selectedQuestions3 = []; //selectedQuestions3 배열을 외부에 선언하�
 let selectedTypes = []; // selectedTypes 배열을 외부에 선언하고 초기화
 let Intersection = []; // Intersection 배열 외부에 선언하고 초기화
 let Intersection2 = [];// Intersection2 배열을 외부에 선언하고 초기화
+let NoIntersection = [];
 let i = 0; // i 변수를 함수 외부에 선언하고 초기화
 let k = 0; // k 변수를 함수 외부에 선언하고 초기화
 let s = 0; // s 변수를 함수 외부에 선언하고 초기화
+let l = 0;
 
 //feelingValues로 feeling에 따른 기분 value 값 지정
 const feelingValues = {
@@ -65,23 +67,20 @@ function goNext1(){
   var q = document.querySelector('.qBox'); // q 변수에 HTML 문서에서 클래스명이 'qBox'인 요소를 가져옴
   if(i === 19){
     Intersection.push(...feelingList.filter(x => selectedTypes.includes(x)));
+    NoIntersection.push(...isAllIncluded.filter(x => selectedTypes.includes(x)))
+    selectedTypes.sort();
+    if(JSON.stringify(NoIntersection) == JSON.stringify(selectedTypes)) {
+      window.location.href = "./peace.html"; // 모든 감정이 포함된 경우 './peace.html' 페이지로 이동
+      return;
+    }
     i++;
     if(i === 20){
-      const isAllIncluded = ['none1', 'none2', 'none3', 'none4', 'none5', 'none6'].every(emotion => selectedTypes.includes(emotion));
-      if(isAllIncluded) {
-        window.location.href = "./peace.html"; // 모든 감정이 포함된 경우 './peace.html' 페이지로 이동
-        return;
-      }
+      NoIntersection = [];
       selectedTypes = [];
       i++;
       goNext2(); // goNext2 함수 호출
     }
   } else if(i === 21){
-    const isAllIncluded = ['none1', 'none2', 'none3', 'none4', 'none5', 'none6'].every(emotion => selectedTypes.includes(emotion));
-    if(isAllIncluded) {
-      window.location.href = "./peace.html"; // 모든 감정이 포함된 경우 './peace.html' 페이지로 이동
-      return;
-    }
     goNext2(); // goNext2 함수 호출
   }
 
@@ -123,6 +122,13 @@ function goNext2(){
       Intersection2.push(...feelingList.filter(x => selectedTypes.includes(x)));
       s++;
       if(s===1){
+        NoIntersection.push(...isAllIncluded.filter(x => selectedTypes.includes(x)))
+        selectedTypes.sort();
+        if(JSON.stringify(NoIntersection) == JSON.stringify(selectedTypes)) {
+          window.location.href = "./peace.html"; // 모든 감정이 포함된 경우 './peace.html' 페이지로 이동
+          return;
+        }
+        NoIntersection = [];
         selectedTypes = [];
         s++;
         goNext3(); // goNext3 함수 호출
@@ -162,30 +168,59 @@ function goNext3(){
   var q = document.querySelector('.qBox');
   var randomIdx3 = getRandomQuestionIndex3();
 
-  q.innerHTML = qnaList[randomIdx3][2].q;
-  for(let j in qnaList[randomIdx3][2].a){
-    addAnswer(qnaList[randomIdx3][2].a[j].answer, qnaList[randomIdx3][2].a[j].type);
+  if(l > Intersection2.length){
+    NoIntersection.push(...isAllIncluded.filter(x => selectedTypes.includes(x)))
+    selectedTypes.sort();
+    if(JSON.stringify(NoIntersection) == JSON.stringify(selectedTypes)) {
+      window.location.href = "./peace.html"; // 모든 감정이 포함된 경우 './peace.html' 페이지로 이동
+      return;
+    }
+    if (selectedTypes.includes("Happy")) {
+      window.location.href = "./happy.html"; // happy 감정에 대한 링크로 이동
+      return;
+    } else if (selectedTypes.includes("Anger")) {
+      window.location.href = "./anger.html"; // anger 감정에 대한 링크로 이동
+      return;
+    } else if (selectedTypes.includes("Toughness")) {
+      window.location.href = "./toughness.html"; // toughness 감정에 대한 링크로 이동
+      return;
+    } else if (selectedTypes.includes("Love")) {
+      window.location.href = "./love.html"; // love 감정에 대한 링크로 이동
+      return;
+    } else if (selectedTypes.includes("Peace")) {
+      window.location.href = "./peace.html"; // peace 감정에 대한 링크로 이동
+      return;
+    } else if (selectedTypes.includes("Sad")) {
+      window.location.href = "./sad.html"; // sad 감정에 대한 링크로 이동
+      return;
+    }
   }
-
-  // 선택된 질문의 type 값이 해당 감정 중 하나인 경우 감정에 대한 링크로 이동
-  if (selectedTypes.includes("Happy")) {
-    window.location.href = "./happy.html"; // happy 감정에 대한 링크로 이동
-    return;
-  } else if (selectedTypes.includes("Anger")) {
-    window.location.href = "./anger.html"; // anger 감정에 대한 링크로 이동
-    return;
-  } else if (selectedTypes.includes("Toughness")) {
-    window.location.href = "./toughness.html"; // toughness 감정에 대한 링크로 이동
-    return;
-  } else if (selectedTypes.includes("Love")) {
-    window.location.href = "./love.html"; // love 감정에 대한 링크로 이동
-    return;
-  } else if (selectedTypes.includes("Peace")) {
-    window.location.href = "./peace.html"; // peace 감정에 대한 링크로 이동
-    return;
-  } else if (selectedTypes.includes("Sad")) {
-    window.location.href = "./sad.html"; // sad 감정에 대한 링크로 이동
-    return;
+  if(l <= Intersection2.length){
+    q.innerHTML = qnaList[randomIdx3][2].q;
+    for(let j in qnaList[randomIdx3][2].a){
+      addAnswer(qnaList[randomIdx3][2].a[j].answer, qnaList[randomIdx3][2].a[j].type);
+    }
+    // 선택된 질문의 type 값이 해당 감정 중 하나인 경우 감정에 대한 링크로 이동
+    if (selectedTypes.includes("Happy")) {
+      window.location.href = "./happy.html"; // happy 감정에 대한 링크로 이동
+    } else if (selectedTypes.includes("Anger")) {
+      window.location.href = "./anger.html"; // anger 감정에 대한 링크로 이동
+    } else if (selectedTypes.includes("Toughness")) {
+      window.location.href = "./toughness.html"; // toughness 감정에 대한 링크로 이동
+    } else if (selectedTypes.includes("Love")) {
+      window.location.href = "./love.html"; // love 감정에 대한 링크로 이동
+    } else if (selectedTypes.includes("Peace")) {
+      window.location.href = "./peace.html"; // peace 감정에 대한 링크로 이동
+    } else if (selectedTypes.includes("Sad")) {
+      window.location.href = "./sad.html"; // sad 감정에 대한 링크로 이동
+    }
+    l++;
+    if (l===Intersection2.length){
+      l++;
+      selectedQuestions2 = []; // selectedQuestions2 배열을 초기화
+      selectedQuestions = []; // selectedQuestions 배열을 초기화
+      selectedQuestions3 = []; // selectedQuestions3 배열을 초기화
+    }
   }
 }
 

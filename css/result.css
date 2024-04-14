@@ -1,3 +1,33 @@
+.result {
+  /* animation : 효과(@keyframes 이름) 동작시간 */
+    animation: fadein 2s;
+  }
+  
+  @keyframes fadein {
+  /* 효과를 동작시간 동안 0 ~ 1까지 */
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+.result {
+  /* animation : 효과(@keyframes 이름) 동작시간 */
+    animation: fadein 3s;
+  }
+    
+  @keyframes fadeout {
+  /* 효과를 동작시간 동안 0 ~ 1까지 */
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
  /* 전체 body 스타일링 */
  body {
   margin: 0;
@@ -5,10 +35,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  /* 화면 높이 설정 */
-  background-color: #f0f0f0;
-  /* 배경색 설정 */
+  height: 100vh; /* 화면 높이 설정 */
+  background-color: #f0f0f0; /* 배경색 설정 */
 }
 
 /* 핸드폰 화면 스타일링 */

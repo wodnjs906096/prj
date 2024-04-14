@@ -68,7 +68,7 @@ const qnaList = [
             ]
         },
     ],
-    Love = [
+    love = [
         {
             q: '사랑에 대한 노래를 들을 때, 어떤 감정이 떠오르나요?',
             a:[
@@ -91,7 +91,7 @@ const qnaList = [
             ]
         },
     ],
-    Happy = [   
+    happy = [   
         {
             q: '당신이 자주 느끼는 감정이 <br>당신의 행동에 미치는 영향을 어떻게 평가하나요?',
             a:[
@@ -114,7 +114,7 @@ const qnaList = [
             ]
         },
     ],
-    Sad=[
+    sad=[
             {
                 q: '지금 느끼는 감정을 날씨로 비유한다면 어떤 날씨일 것 같나요?',
                 a:[
@@ -140,3 +140,6 @@ const qnaList = [
 ]
 
 const feelingList = ['Peace', 'Toughness', 'Anger', 'Love', 'Happy', 'Sad']
+
+
+const isAllIncluded = ['none1', 'none2', 'none3', 'none4', 'none5', 'none6']
